@@ -5,6 +5,13 @@
 # Teslo API
 
 1. Build the database
+
 ```
 docker-compose up -d
+```
+
+2. Run the api
+
+```
+yarn start:dev
 ```
