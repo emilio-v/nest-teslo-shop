@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class ProductsService {
@@ -30,9 +31,12 @@ export class ProductsService {
     }
   }
 
-  findAll() {
+  findAll({ limit = 10, offset = 0 }: PaginationDto) {
     try {
-      return this.productRepository.find();
+      return this.productRepository.find({
+        take: limit,
+        skip: offset,
+      });
     } catch (error) {
       this.handleDBException(error);
     }
