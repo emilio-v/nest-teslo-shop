@@ -38,4 +38,9 @@ export class CreateProductDto {
   @IsString()
   @MinLength(1)
   title: string;
+
+  @IsString({ each: true })
+  @IsArray()
+  @IsOptional()
+  tags: string[];
 }
